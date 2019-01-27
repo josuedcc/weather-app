@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import WeatherLocation from './components/WeatherLocation'
+import LocationList from  './components/WeatherLocation/LocationList'
 import './App.css';
+import { MuiThemeProvider } from '@material-ui/core';
+
+const cities = [
+  'Lima, pe',
+  'Huancayo, pe',
+  'Huanuco, pe'
+];
 
 class App extends Component {
 
@@ -8,13 +15,21 @@ class App extends Component {
     document.title = "Weather App"
   }
 
+  handleSelectedLocation = city => {
+    console.log(`handleSelectedLocation ${city}`);
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-            <WeatherLocation city="Huanuco, pe"></WeatherLocation>
-        </header>
-      </div>
+      <MuiThemeProvider>
+        <div className="App">
+          <header className="App-header">
+              <LocationList cities={cities} 
+              onSelectedLocation={this.handleSelectedLocation} ></LocationList>
+          </header>
+        </div>
+      </MuiThemeProvider>
+      
     );
   }
 }
